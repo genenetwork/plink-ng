@@ -1,0 +1,15 @@
+# GNU Guix Makefile for PLINK-ng
+#
+# GNU Guix allows for a simpler build environment since all dependencies
+# are resolved by the build system. The Guix edition is built with
+# external zlib and openblas support. The system is tried and tested
+# with http://genenetwork.org/
+#
+# Pjotr Prins
+
+LINKFLAGS=-lm -lpthread -lopenblas -lz -llapack
+
+SRC = plink.c plink_assoc.c plink_calc.c plink_cluster.c plink_cnv.c plink_common.c plink_data.c plink_dosage.c plink_family.c plink_filter.c plink_glm.c plink_help.c plink_homozyg.c plink_lasso.c plink_ld.c plink_matrix.c plink_misc.c plink_perm.c plink_rserve.c plink_set.c plink_stats.c SFMT.c dcdflib.c pigz.c yarn.c Rconnection.cc hfile.c bgzf.c
+
+plink: $(SRC)
+	g++ $(CFLAGS) $(SRC) -o plink2 -DDYNAMIC_ZLIB $(LINKFLAGS)
